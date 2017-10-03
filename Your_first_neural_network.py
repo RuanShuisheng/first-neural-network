@@ -214,7 +214,6 @@ class NeuralNetwork(object):
         # TODO: Update the weights - Replace these values with your calculations.
         self.weights_hidden_to_output += self.lr * delta_weights_h_o / n_records # update hidden-to-output weights with gradient descent step
         self.weights_input_to_hidden += self.lr * delta_weights_i_h / n_records # update input-to-hidden weights with gradient descent step
-        
         print(self.weights_hidden_to_output)
         print(self.weights_input_to_hidden)
         
@@ -339,8 +338,8 @@ import sys
 
 ### Set the hyperparameters here ###
 iterations = 2000
-learning_rate = 0.1
-hidden_nodes = 2
+learning_rate = 1
+hidden_nodes = 13
 output_nodes = 1
 
 N_i = train_features.shape[1]
@@ -403,7 +402,9 @@ _ = ax.set_xticklabels(dates[12::24], rotation=45)
 # > **注意**：你可以通过双击该单元编辑文本。如果想要预览文本，请按 Control + Enter
 # 
 # #### 请将你的答案填写在下方
-# 迭代次数为100时，模型对数据的预测效果不好。
-# 这是因为迭代次数不够，训练损失还很大，训练损失还没有收敛。
-# 通过增加迭代次数到2000次，可以看出，在迭代1000次后，模型的训练损失达到很低，且随着迭代次数的增加，训练损失下降不明显。
-# 因此，可以设置迭代次数为1000次，此时，模型对数据的预测效果很好。
+# 设置迭代次数为2000，learn_rate = 1, hidden_node节点数为13时，训练误差为0.078，验证误差为0.152，均在0.2以下，模型对数据的预测很好。
+# 
+# 原来迭代次数为100，迭代次数太低，无法收敛。
+# 原来隐藏层的节点数为2，无法收敛。
+# 原来的学习率为0.1，除以128后，仅为0.001左右，收敛太慢。
+# 通过反复调整迭代次数，隐藏层的节点数和学习率，使得模型得到优化，满足要求。
